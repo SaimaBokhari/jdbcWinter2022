@@ -51,9 +51,10 @@ public class PreparedStatement01 {
             System.out.println(resultSet2.getInt(1)+"- "+resultSet2.getString(2)+"- "+resultSet2.getInt(3));
         }
 
-//        // last step: Close the connection and statement
-//        con.close();;
-//        st.close();
+        // last step: Close the connection and statement
+        con.close();;
+        st.close();
+        pst1.close();
 
 
     }
