@@ -52,7 +52,7 @@ public class ExecuteQuery02 {
             System.out.println(resultSet3.getString("company")+"- " +resultSet3.getInt("number_of_employees"));
         }
 
-//        // last step: Close the connection and statement
+       // last step: Close the connection and statement
         con.close();;
         st.close();
 
