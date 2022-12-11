@@ -1,7 +1,6 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 // We are creating this Utils class because we don't want the system to throw exception and stop
 // To do that we need to handle the exception using try/catch block
 // So we create methods with try/catch block for all the steps that we need to do in normal class
@@ -124,6 +123,33 @@ public class JdbcUtils {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // Create a method to get column data into a list
+    public static List<Object> getColumnList(String columnName, String tableName){
+        ResultSet resultSet = null;
+        List<Object> columnData = new ArrayList<>();
+
+        String query ="SELECT "+columnName+" FROM "+tableName;
+
+        try {
+            resultSet = statement.executeQuery(query);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        while (true){
+            try {
+                if (!resultSet.next()) break;
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            try {
+                columnData.add(resultSet.getObject(1));
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return columnData;
     }
 
 
